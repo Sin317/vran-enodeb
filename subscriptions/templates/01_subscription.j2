@@ -1,0 +1,17 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  name: {{item.name_policy}}
+  namespace: {{item.namespace}}
+  labels:
+    app: {{item.name_policy}}
+  annotations:
+    apps.open-cluster-management.io/git-path: {{item.git_path}}
+    apps.open-cluster-management.io/git-branch: {{item.git_branch}}
+    apps.open-cluster-management.io/reconcile-option: replace
+spec:
+  channel: {{item.namespace}}/{{item.name_policy}} 
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: {{item.name_policy}}
